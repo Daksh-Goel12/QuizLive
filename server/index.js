@@ -25,7 +25,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://quizlive.vercel.app"],
+    origin: ["http://localhost:3000", "https://quizlive.vercel.app", "https://YOUR_VERCEL_URL.vercel.app"],
     methods: ["GET", "POST"]
   }
 });

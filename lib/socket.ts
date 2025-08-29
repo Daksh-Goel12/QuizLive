@@ -16,7 +16,7 @@ class SocketManager {
   connect(): Socket {
     if (!this.socket) {
       const serverUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://your-backend-url.railway.app' 
+        ? 'https://YOUR_ACTUAL_BACKEND_URL_HERE' 
         : 'http://localhost:3001';
       
       this.socket = io(serverUrl, {
