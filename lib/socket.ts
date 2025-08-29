@@ -15,7 +15,9 @@ class SocketManager {
 
   connect(): Socket {
     if (!this.socket) {
-      const serverUrl = 'http://localhost:3001';
+      const serverUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://your-backend-url.railway.app' 
+        : 'http://localhost:3001';
       
       this.socket = io(serverUrl, {
         transports: ['websocket', 'polling'],

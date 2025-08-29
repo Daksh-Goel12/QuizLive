@@ -49,12 +49,12 @@ export default function HostPage() {
 
   const handleCreateRoom = async () => {
     const result = await createRoom()
-    if (result.success) {
-      setRoomCode(result.roomCode)
-      analytics.trackQuizCreated(result.roomCode)
+    if (result?.success) {
+      setRoomCode(result.roomCode || '')
+      analytics.trackQuizCreated(result.roomCode || '')
       toast.success(`Room created! Code: ${result.roomCode}`)
     } else {
-      toast.error(result.error || 'Failed to create room')
+      toast.error(result?.error || 'Failed to create room')
     }
   }
 

@@ -53,7 +53,7 @@ export const useSocket = (): UseSocketReturn => {
         return;
       }
 
-      socket.emit('create-room', (response: any) => {
+      socket.emit('create-room', (response: { success: boolean; roomCode?: string; error?: string }) => {
         resolve(response);
       });
     });
@@ -66,7 +66,7 @@ export const useSocket = (): UseSocketReturn => {
         return;
       }
 
-      socket.emit('join-room', { roomCode, playerName }, (response: any) => {
+      socket.emit('join-room', { roomCode, playerName }, (response: { success: boolean; error?: string }) => {
         resolve(response);
       });
     });
@@ -79,7 +79,7 @@ export const useSocket = (): UseSocketReturn => {
         return;
       }
 
-      socket.emit('start-quiz', { roomCode }, (response: any) => {
+      socket.emit('start-quiz', { roomCode }, (response: { success: boolean; error?: string }) => {
         resolve(response);
       });
     });
@@ -92,20 +92,20 @@ export const useSocket = (): UseSocketReturn => {
         return;
       }
 
-      socket.emit('add-question', { roomCode, question }, (response: any) => {
+      socket.emit('add-question', { roomCode, question }, (response: { success: boolean; error?: string }) => {
         resolve(response);
       });
     });
   }, [socket]);
 
-  const submitAnswer = useCallback((roomCode: string, answerIndex: number, responseTime: number): Promise<any> => {
+  const submitAnswer = useCallback((roomCode: string, answerIndex: number, responseTime: number): Promise<{ success: boolean; error?: string }> => {
     return new Promise((resolve) => {
       if (!socket) {
         resolve({ success: false, error: 'Socket not connected' });
         return;
       }
 
-      socket.emit('submit-answer', { roomCode, answerIndex, responseTime }, (response: any) => {
+      socket.emit('submit-answer', { roomCode, answerIndex, responseTime }, (response: { success: boolean; error?: string }) => {
         resolve(response);
       });
     });
@@ -118,7 +118,7 @@ export const useSocket = (): UseSocketReturn => {
         return;
       }
 
-      socket.emit('next-question', { roomCode }, (response: any) => {
+      socket.emit('next-question', { roomCode }, (response: { success: boolean; error?: string }) => {
         resolve(response);
       });
     });
