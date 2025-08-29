@@ -51,7 +51,7 @@ export default function HostPage() {
     const result = await createRoom()
     if (result?.success) {
       setRoomCode(result.roomCode || '')
-      analytics.trackQuizCreated(result.roomCode || '')
+      analytics.trackQuizCreated(result.roomCode || '', 0)
       toast.success(`Room created! Code: ${result.roomCode}`)
     } else {
       toast.error(result?.error || 'Failed to create room')
