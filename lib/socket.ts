@@ -16,7 +16,7 @@ class SocketManager {
   connect(): Socket {
     if (!this.socket) {
       const serverUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://YOUR_ACTUAL_BACKEND_URL_HERE' 
+        ? 'https://quizlive-production.up.railway.app' 
         : 'http://localhost:3001';
       
       this.socket = io(serverUrl, {
